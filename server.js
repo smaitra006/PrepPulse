@@ -10,7 +10,7 @@ async function startServer() {
     console.log('Database connectivity verified successfully');
 
     app.listen(PORT, () => {
-      console.log(`PrepPulse server running natively on https://localhost:${PORT}`);
+      console.log(`PrepPulse server running natively on http://localhost:${PORT}`);
     })
   }
   catch(error) {
