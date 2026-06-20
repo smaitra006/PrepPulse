@@ -3,6 +3,7 @@ const cookieParser = require('cookie-parser')
 const path = require('path')
 const authRoutes = require('./routes/authRoutes');
 const problemRoutes = require('./routes/problemRoutes');
+const userTrackingRoutes = require('./routes/userTrackingRoutes');
 
 const app = express()
 
@@ -18,6 +19,7 @@ app.get('/health', async(req, res) => {
 
 app.use('/api/auth', authRoutes);
 app.use('/api/problems', problemRoutes);
+app.use('/api/tracking', userTrackingRoutes);
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
