@@ -8,6 +8,6 @@ router.use(requireAuth);
 
 router.get('/', getUserTrackedProblems);
 
-router.put('/problems/:problemId', updateProblemStatus);
+router.put('/:problemId', updateProblemStatus);
 
 module.exports = router;

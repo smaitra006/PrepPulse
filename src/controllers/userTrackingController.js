@@ -2,7 +2,7 @@ const { pool } = require('../config/db');
 
 const updateProblemStatus = async (req, res) => {
     const { problemId } = req.params;
-    const { status, notes, revision_date } = req.body;
+    const { status, notes = null, revisionDate = null } = req.body;
     const userId = req.user.id;
 
     const query = `
@@ -17,7 +17,7 @@ const updateProblemStatus = async (req, res) => {
         RETURNING *;
     `;
 
-    const values = [userId, problemId, status, notes, revision_date];
+    const values = [userId, problemId, status, notes, revisionDate];
 
     const result = await pool.query(query, values);
 
