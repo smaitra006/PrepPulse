@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrepPulse | Secure Login</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-50 text-gray-900 antialiased selection:bg-brand-100 selection:text-brand-900">
+    <main class="flex min-h-screen items-center justify-center p-4 sm:p-8">
+        <div class="flex w-full max-w-4xl flex-col overflow-hidden rounded-2xl bg-white shadow-xl sm:flex-row">
+
+            <div class="hidden w-1/2 flex-col justify-between bg-brand-900 p-12 text-white sm:flex">
+                <div>
+                    <h1 class="text-3xl font-bold tracking-tight">PrepPulse.</h1>
+                    <p class="mt-4 text-brand-100">Your complete placement and interview tracking pipeline. Manage problems, deadlines, and offers in one place.</p>
+                </div>
+                <div class="rounded-xl bg-white/10 p-6 backdrop-blur-sm">
+                    <p class="text-sm text-brand-50">"PrepPulse replaced my messy spreadsheets. The centralized dashboard keeps my job hunt organized and stress-free."</p>
+                </div>
+            </div>
+
+            <div class="w-full p-8 sm:w-1/2 sm:p-12">
+                <div class="mb-8">
+                    <h2 id="form-title" class="text-2xl font-bold text-gray-900">Welcome back</h2>
+                    <p id="form-subtitle" class="mt-2 text-sm text-gray-600">Enter your credentials to access your dashboard.</p>
+                </div>
+
+                <div id="error-alert" class="hidden mb-6 rounded-lg bg-red-50 p-4 text-sm text-red-600 border border-red-200"></div>
+
+                <form id="login-form" class="space-y-5">
+                    <div>
+                        <label for="login-email" class="mb-1 block text-sm font-medium text-gray-700">Email Address</label>
+                        <input type="email" id="login-email" required class="input-field" placeholder="you@example.com">
+                    </div>
+                    <div>
+                        <label for="login-password" class="mb-1 block text-sm font-medium text-gray-700">Password</label>
+                        <input type="password" id="login-password" required class="input-field" placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="btn-primary mt-2">Sign In</button>
+                </form>
+
+                <form id="register-form" class="hidden space-y-5">
+                    <div>
+                        <label for="reg-username" class="mb-1 block text-sm font-medium text-gray-700">Username</label>
+                        <input type="text" id="reg-username" required class="input-field" placeholder="johndoe">
+                    </div>
+                    <div>
+                        <label for="reg-email" class="mb-1 block text-sm font-medium text-gray-700">Email Address</label>
+                        <input type="email" id="reg-email" required class="input-field" placeholder="you@example.com">
+                    </div>
+                    <div>
+                        <label for="reg-password" class="mb-1 block text-sm font-medium text-gray-700">Password</label>
+                        <input type="password" id="reg-password" required class="input-field" placeholder="Min 8 chars, 1 number">
+                    </div>
+                    <button type="submit" class="btn-primary mt-2">Create Account</button>
+                </form>
+
+                <div class="mt-8 text-center text-sm text-gray-600">
+                    <span id="toggle-text">Don't have an account?</span>
+                    <button id="toggle-form-btn" class="font-semibold text-brand-600 hover:text-brand-500 focus:outline-none">Sign up</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="/js/auth.js"></script>
+</body>
+</html>
