@@ -1,6 +1,9 @@
 const express = require('express')
 const cookieParser = require('cookie-parser')
 const path = require('path')
+
+const { helmetMiddleware, globalLimiter, corsMiddleware } = require('./middleware/security');
+
 const authRoutes = require('./routes/authRoutes');
 const problemRoutes = require('./routes/problemRoutes');
 const userTrackingRoutes = require('./routes/userTrackingRoutes');
@@ -9,9 +12,12 @@ const dashboardRoutes = require('./routes/dashboardRoutes');
 
 const app = express()
 
-app.use(express.json())
-app.use(express.urlencoded({extended: true}))
-app.use(cookieParser())
+app.use(helmetMiddleware);
+app.use(corsMiddleware);
+app.use('/api/', globalLimiter);
+app.use(express.json({ limit: '10kb' })); 
+app.use(express.urlencoded({ extended: true, limit: '10kb' }));
+app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, 'public')))
 
