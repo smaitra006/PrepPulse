@@ -5,6 +5,7 @@ const authRoutes = require('./routes/authRoutes');
 const problemRoutes = require('./routes/problemRoutes');
 const userTrackingRoutes = require('./routes/userTrackingRoutes');
 const applicationRoutes = require('./routes/applicationRoutes');
+const dashboardRoutes = require('./routes/dashboardRoutes');
 
 const app = express()
 
@@ -22,6 +23,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/problems', problemRoutes);
 app.use('/api/tracking', userTrackingRoutes);
 app.use('/api/applications', applicationRoutes);
+app.use('/api/dashboard', dashboardRoutes);
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
