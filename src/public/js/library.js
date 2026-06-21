@@ -72,9 +72,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                             <span class="px-2.5 py-1 text-xs font-semibold rounded-full ${diffColor}">${p.difficulty}</span>
                         </td>
                         <td class="px-6 py-4 text-right">
-                            <button onclick="openTrackingModal(${p.id}, '${p.title.replace(/'/g, "\\'")}')"
-                                class="px-3 py-1.5 text-sm font-medium text-brand-600 bg-brand-50 hover:bg-brand-100 rounded border border-brand-200 transition-colors">
-                                Update Status
+                            <button class="update-status-btn px-3 py-1.5 text-sm font-medium text-brand-600 bg-brand-50 hover:bg-brand-100 rounded border border-brand-200 transition-colors"
+                            data-id="${p.id}" data-title="${p.title.replace(/"/g, '&quot;')}">
+                            Update Status
                             </button>
                         </td>
                     </tr>
@@ -86,16 +86,22 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     // 3. Modal & Tracking Logic
-    window.openTrackingModal = (id, title) => {
-        document.getElementById('modal-problem-id').value = id;
-        document.getElementById('modal-problem-title').textContent = title;
-        document.getElementById('modal-status').value = 'solved'; // Default suggestion
+    problemsTbody.addEventListener('click', (e) => {
+        const btn = e.target.closest('.update-status-btn');
+        if (!btn) return; // If they didn't click the button, ignore it
+
+        document.getElementById('modal-problem-id').value = btn.dataset.id;
+        document.getElementById('modal-problem-title').textContent = btn.dataset.title;
+        document.getElementById('modal-status').value = 'solved';
         document.getElementById('modal-notes').value = '';
+
         trackingModal.classList.remove('hidden');
-    };
+        trackingModal.classList.add('flex');
+    });
 
     closeModalBtn.addEventListener('click', () => {
         trackingModal.classList.add('hidden');
+        trackingModal.classList.remove('flex');
     });
 
     trackingForm.addEventListener('submit', async (e) => {
@@ -121,6 +127,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             if (res.ok) {
                 trackingModal.classList.add('hidden');
+                trackingModal.classList.remove('flex');
             } else {
                 alert('Failed to update status.');
             }
@@ -134,7 +141,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     // Event Listeners for Filters
-    searchInput.addEventListener('input', loadProblems); 
+    searchInput.addEventListener('input', loadProblems);
     topicFilter.addEventListener('change', loadProblems);
     difficultyFilter.addEventListener('change', loadProblems);
 
